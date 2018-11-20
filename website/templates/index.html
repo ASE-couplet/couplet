@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends "bootstrap/base.html" %}
+{% block title %}图诗{% endblock %}
+
+{% block content %}
+<div class="container" 
+style="background-image:url(./static/image/index.jpg);width:1800px;height:1800px;background-repeat:no-repeat;">
+	<div class="row clearfix">
+		<div class="col-md-12 column" align=center style="margin-top:900px">
+            <form method=post enctype=multipart/form-data>
+                <input type=file name=file> 		
+                <input type=submit value=upload>
+		   	</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
