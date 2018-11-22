@@ -35,7 +35,7 @@ def upload_file():
             # s = "result"
             # filename = filename.split(".")[0]
             return render_template("uploader.html", filename=filename)
-    return render_template("index.html")
+    return render_template("index_new.html")
 
 @app.route('/result/<filename>')
 def result(filename):
