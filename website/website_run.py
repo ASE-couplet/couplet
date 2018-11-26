@@ -54,15 +54,16 @@ def result(filename):
 
 @socketio.on('image_url')
 def process_msg(msg):
-    # image_url = msg['data']
-    logging.info("runnnnnnnnn")
-    print('ttest')
-
-    return "<html> hello </html>"
+    filename = "./" + msg['data']
+    # os.system("python sleep.py")
+    strs = "往后余生,风雪是你,平淡是你,清贫也是你\n荣华是你,心底温柔是你,目光所致,也是你"
+    filename = textImage(strs, filename, (0, 0, 0))
+    emit('response', {'data': 'out.jpg'})
+    # return "<html> hello </html>"
     # os.system("python sleep.py")
     # # read result
-    # strs = "往后余生,风雪是你,平淡是你,清贫也是你\n荣华是你,心底温柔是你,目光所致,也是你"
-    # filename = textImage(strs, filename, (0, 0, 0))
+    # 
+    # 
     # return "url_for('/result/{}'.format(filename))"
 
 if __name__ == '__main__':
