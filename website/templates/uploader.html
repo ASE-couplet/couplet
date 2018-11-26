@@ -2,7 +2,6 @@
 <!-- <html lang="en"> -->
 <head>
 <title>图诗</title>
-<meta http-equiv="refresh" content="15;url = {{ url_for('result', filename=filename) }}">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="" />
@@ -11,7 +10,9 @@
 <link href="/static/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
 <link href="/static/css/style.css" type="text/css" rel="stylesheet" media="all">   
 <link href="/static/css/slider.css" type="text/css" rel="stylesheet" media="all"> 
-<link href='/static/css/simplelightbox.min.css' rel='stylesheet' type='text/css'>   
+<link href='/static/css/simplelightbox.min.css' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/socket.io/1.5.1/socket.io.min.js"></script>   
 <!-- //Custom Theme files -->
 <!-- font-awesome icons -->
 <link href="/static/css/font-awesome.css" rel="stylesheet"> 
@@ -25,6 +26,25 @@
 <script type="text/javascript" src="/static/js/fileinput.js"></script>
 <script type="text/javascript" src="/static/js/fileinput.min.js"></script>
 <script type="text/javascript" src="/static/js/fileinput_locale_zh.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+        var socket = io.connect();
+
+        socket.on('connect', function() {
+            socket.emit('image_url', {"data": "{{ filename }}" });
+        })
+
+        // socket.on('server_response', function(msg) {
+        //     $('#log').append('<br>' + $('<div/>').text('Received #' + ': ' + msg.data).html());
+        // });
+
+        // $('form#emit').submit(function(event) {
+        //         socket.emit('client_event', {data: $('#emit_data').val()});
+        //         return false;
+        //     });
+    });
+</script>
 
 <!-- web-fonts --> 
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
