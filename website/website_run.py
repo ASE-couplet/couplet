@@ -5,6 +5,8 @@ from flask import render_template
 from flask_bootstrap import Bootstrap
 from werkzeug import secure_filename
 
+from textImage import textImage
+
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
@@ -34,6 +36,8 @@ def upload_file():
             # file_url = url_for('uploaded_file', filename=filename)
             # s = "result"
             # filename = filename.split(".")[0]
+            strs = "往后余生,风雪是你,平淡是你,清贫也是你\n荣华是你,心底温柔是你,目光所致,也是你"
+            filename = textImage(strs, filename, (0, 0, 0))
             return render_template("uploader.html", filename=filename)
     return render_template("index_new.html")
 
