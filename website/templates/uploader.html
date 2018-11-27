@@ -31,11 +31,11 @@
         var socket = io.connect();
 
         socket.on('connect', function() {
-            socket.emit('image_url', {'data': "{{ filename }}" });
+            socket.emit('image_url', {'data': "{{ filename }}", 'randseed': "{{ randseed }}" });
         })
 
         socket.on('response', function(msg) {
-            window.location.href = 'result/' + msg.data;
+            window.location.href = 'result/' + msg.data + '/' + msg.randseed;
         });
 
         // $('form#emit').submit(function(event) {

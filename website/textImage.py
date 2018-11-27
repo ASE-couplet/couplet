@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
+import os
 import PIL
 from PIL import ImageFont
 from PIL import Image
 from PIL import ImageDraw
 
 
-def textImage(strs, sourceimage, color):
+def textImage(strs, sourceimage, color, savepath="./"):
     im = Image.open(sourceimage)
     out = im.resize((800, 600))
     textout = Image.new("RGB", out.size, "white")
@@ -44,7 +45,7 @@ def textImage(strs, sourceimage, color):
     del draw
     out = Image.blend(out, textout, 0.2)
     filename = "out.jpg"
-    new_filename = ".\\" + filename
+    new_filename = os.path.join(savepath, filename)
     out.save(new_filename)
     return filename
 
