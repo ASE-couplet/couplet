@@ -35,7 +35,7 @@
         })
 
         socket.on('response', function(msg) {
-            window.location.href = 'result/' + "{{filename}}";
+            window.location.href = 'result/' + msg.data;
         });
 
         // $('form#emit').submit(function(event) {
