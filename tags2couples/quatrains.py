@@ -16,11 +16,16 @@ def is_quatrain(poem):
                 reduce(lambda x, sentence: x and len(sentence) == len(sentences[0]),
                         sentences[1:], True)
 
+def is_couplet(poem):
+    if poem['source'] == 'couplet.txt':
+        return True
+    else :
+        return False
 
 def get_quatrains():
     _, ch2int = get_vocab()
     def quatrain_filter(poem):
-        if not is_quatrain(poem):
+        if not is_couplet(poem):
             return False
         else:
             for sentence in poem['sentences']:

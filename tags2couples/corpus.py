@@ -11,11 +11,11 @@ from rhyme import RhymeUtil
 
 
 _corpus_list = ['qts_tab.txt', 'qss_tab.txt', 'qsc_tab.txt', 'qtais_tab.txt',
-        'yuan.all', 'ming.all', 'qing.all']
+        'yuan.all', 'ming.all', 'qing.all', 'couplet.txt']
 
 
 def _parse_corpus(raw_file, json_file):
-    print "Parsing %s ..." %raw_file ,
+    print "Parsing %s ..." %raw_file 
     sys.stdout.flush()
     rdict = RhymeUtil()
     data = []
@@ -55,6 +55,30 @@ def _parse_corpus(raw_file, json_file):
     return data
 
 
+def _parse_couplet(raw_file, json_file):
+    import ipdb
+    print "Parsing %s ..." %raw_file ,
+    sys.stdout.flush()
+    rdict = RhymeUtil()
+    data = []
+    with codecs.open(raw_file, 'r', 'utf-8') as fin:
+        line1 = fin.readline().strip()
+        line2 = fin.readline().strip()
+        while line1 and line2:
+            poem = {'source':os.path.basename(raw_file)}
+            sentence = [line1]
+            sentence.append(line2)
+            poem['sentences'] = sentence
+            data.append(poem)
+            line = fin.readline().strip()
+            line1 = fin.readline().strip()
+            line2 = fin.readline().strip()
+    with codecs.open(json_file, 'w', 'utf-8') as fout:
+        json.dump(data, fout)
+    print "Done (%d poems)" %len(data)
+    return data
+    
+
 def get_all_corpus():
     corpus = []
     for raw in _corpus_list:
@@ -63,7 +87,10 @@ def get_all_corpus():
             with codecs.open(json_file, 'r', 'utf-8') as fin:
                 data = json.load(fin)
         except IOError:
-            data = _parse_corpus(os.path.join(DATA_RAW_DIR, raw), json_file)
+            if raw != 'couplet.txt':
+                data = _parse_corpus(os.path.join(DATA_RAW_DIR, raw), json_file)
+            else:
+                data = _parse_couplet(os.path.join(DATA_RAW_DIR, raw), json_file)
         finally:
             corpus.extend(data)
     return corpus

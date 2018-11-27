@@ -41,9 +41,11 @@ def _gen_train_data():
     print "Generating training data ..."
     data = []
     kw_data = []
+    import ipdb
+    ipdb.set_trace()
     for idx, poem in enumerate(poems):
         sentences = poem['sentences']
-        if len(sentences) == 4:
+        if len(sentences) == 2:
             flag = True
             rows = []
             kw_row = []
@@ -259,7 +261,7 @@ def main():
     print "Size of the training data: %d" %len(train_data)
     kw_train_data = get_kw_train_data()
     print "Size of the keyword training data: %d" %len(kw_train_data)
-    assert len(train_data) == 4 * len(kw_train_data)
+    assert len(train_data) == 2 * len(kw_train_data)
 
 
 if __name__ == '__main__':
