@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<!-- <html lang="en"> -->
+<head>
+<title>图诗</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+<link href="/static/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+<link href="/static/css/style.css" type="text/css" rel="stylesheet" media="all">   
+<link href="/static/css/slider.css" type="text/css" rel="stylesheet" media="all"> 
+<link href='/static/css/simplelightbox.min.css' rel='stylesheet' type='text/css'> 
+<!-- //Custom Theme files -->
+<!-- font-awesome icons -->
+<link href="/static/css/font-awesome.css" rel="stylesheet"> 
+<!-- //font-awesome icons -->
+<!-- js -->
+<script src="/static/js/jquery-2.2.3.min.js"></script> 
+<!-- //js -->
+
+<link type="text/css" rel="stylesheet" href="/static/css/fileinput.css" />
+<link type="text/css" rel="stylesheet" href="/static/css/fileinput.min.css" />
+<script type="text/javascript" src="/static/js/fileinput.js"></script>
+<script type="text/javascript" src="/static/js/fileinput.min.js"></script>
+<script type="text/javascript" src="/static/js/fileinput_locale_zh.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/socket.io/1.5.1/socket.io.min.js"></script>  
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+        var socket = io.connect();
+
+        socket.on('connect', function() {
+            socket.emit('image_url', {'data': "{{ filename }}", 'randseed': "{{ randseed }}" });
+        })
+
+        socket.on('response', function(msg) {
+            window.location.href = 'result/' + msg.data + '/' + msg.randseed;
+        });
+
+        // $('form#emit').submit(function(event) {
+        //         socket.emit('client_event', {data: $('#emit_data').val()});
+        //         return false;
+        //     });
+    });
+</script>
+
+<!-- web-fonts --> 
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href="http://fonts.googleapis.com/css?family=Tinos:400,400i,700,700i" rel="stylesheet"> 
+<!-- //web-fonts -->
+<!-- start-smooth-scrolling -->
+<script type="text/javascript" src="/static/js/move-top.js"></script>
+<script type="text/javascript" src="/static/js/easing.js"></script>	
+<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+		
+		$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+</script>
+<!-- //end-smooth-scrolling -->	
+</head>
+<body>
+	<!-- banner -->
+	<div class="banner"> 
+		<div class="cd-radial-slider-wrapper"> 
+			<div class="header agileinfo-header"><!-- header -->
+				<nav class="navbar navbar-default">
+					<div class="container">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<h1><a href="index">Poem<span>Picture</span></a></h1>
+						</div> 
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav nav-center"> 
+								<li><a href="index" class="w3ls-hover active">Home</a></li>
+								<li><a href="#about" class="btn w3ls-hover scroll">About</a></li> 
+								<li><a href="#services" class="btn w3ls-hover scroll">Services</a></li> 
+								<li><a href="#team" class="btn w3ls-hover scroll">Team</a></li>
+								<li><a href="#gallery" class="btn w3ls-hover scroll">Work</a></li>
+								<li><a href="#contact" class="btn w3ls-hover scroll">Contact</a></li>
+							</ul>	  
+							<ul class="nav navbar-nav navbar-right"> 
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-phone" aria-hidden="true"></i></a>
+									<ul class="dropdown-menu">
+										<li><a href="#"><b>Office :</b> +222 11 4444</a></li>  
+										<li><a href="#"><b>Office1 :</b> +233 11 2345</a></li>    
+									</ul>
+								</li> 
+							</ul>
+							<div class="clearfix"> </div>
+						</div><!-- //navbar-collapse -->
+						<!-- cd-search -->
+						<div class="cd-main-header">
+							<ul class="cd-header-buttons">
+								<li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
+							</ul> <!-- cd-header-buttons -->
+						</div>  
+						<div id="cd-search" class="cd-search agileinfo">
+							<form action="#" method="post">
+								<input name="Search" type="search" placeholder="Search...">
+							</form>
+						</div> 
+						<!-- //cd-search -->
+					</div><!-- //container-fluid -->
+				</nav>
+			</div><!-- //header -->	
+			<ul class="cd-radial-slider" data-radius1="60" data-radius2="1364" data-centerx1="110" data-centerx2="1290">
+				<li class="visible"> 
+					<div class="svg-wrapper">
+						<svg viewBox="0 0 1400 800">
+							<title>Animated SVG</title>
+							<defs>
+								<clipPath id="cd-image-1">
+									<circle id="cd-circle-1" cx="110" cy="400" r="1364"/>
+								</clipPath>
+							</defs> 
+							<image height='800px' width="1400px" clip-path="url(#cd-image-1)" xlink:href="/static/images/1.jpg"></image>
+						</svg>
+					</div> <!-- .svg-wrapper --> 
+					<div class="cd-radial-slider-content">
+						<div class="wrapper">
+							<div>
+								<h2>看图对联<span> 作诗</span> </h2>
+								<a data-target="#myModal" class="w3ls-btn button8 scroll" data-toggle="modal" >start</a>
+							</div>
+						</div>
+					</div> <!-- .cd-radial-slider-content -->
+				</li> 
+				<li class="next-slide">
+					<div class="svg-wrapper">
+						<svg viewBox="0 0 1400 800">
+							<title>Animated SVG</title>
+							<defs>
+								<clipPath id="cd-image-2">
+									<circle id="cd-circle-2" cx="1290" cy="400" r="60"/>
+								</clipPath>
+							</defs> 
+							<image height='800px' width="1400px" clip-path="url(#cd-image-2)" xlink:href="/static/images/2.jpg"></image>
+						</svg>
+					</div> <!-- .svg-wrapper --> 
+					<div class="cd-radial-slider-content">
+						<div class="wrapper">
+							<div> 
+								<h3>看图对联<span> 作诗 </span> </h3>
+								<a href="#about" class="w3ls-btn button8 scroll">start</a>
+							</div>
+						</div>
+					</div> <!-- .cd-radial-slider-content -->
+				</li> 
+				<li>
+					<div class="svg-wrapper">
+						<svg viewBox="0 0 1400 800">
+							<title>Animated SVG</title>
+							<defs>
+								<clipPath id="cd-image-3">
+									<circle id="cd-circle-3" cx="110" cy="400" r="60"/>
+								</clipPath>
+							</defs> 
+							<image height='800px' width="1400px" clip-path="url(#cd-image-3)" xlink:href="/static/images/1.jpg"></image>
+						</svg>
+					</div> <!-- .svg-wrapper --> 
+					<div class="cd-radial-slider-content">
+						<div class="wrapper">
+							<div> 
+								<h3>看图对联<span> 作诗</span> </h3>
+								<a href="#about" class="w3ls-btn button8 scroll">start</a>
+							</div>
+						</div>
+					</div> <!-- .cd-radial-slider-content -->
+				</li> 
+				<li class="prev-slide">
+					<div class="svg-wrapper">
+						<svg viewBox="0 0 1400 800">
+							<title>Animated SVG</title>
+							<defs>
+								<clipPath id="cd-image-4">
+									<circle id="cd-circle-4" cx="110" cy="400" r="60"/>
+								</clipPath>
+							</defs> 
+							<image height='800px' width="1400px" clip-path="url(#cd-image-4)" xlink:href="/static/images/2.jpg"></image>
+						</svg>
+					</div> <!-- .svg-wrapper --> 
+					<div class="cd-radial-slider-content">
+						<div class="wrapper">
+							<div> 
+								<h3>看图对联<span> 作诗</span> </h3>
+								<a href="#about" class="w3ls-btn button8 scroll">Start</a>
+							</div>
+						</div>
+					</div> <!-- .cd-radial-slider-content -->
+				</li> 
+			</ul> <!-- .cd-radial-slider --> 
+			<ul class="cd-radial-slider-navigation">
+				<li><a href="#0" class="next">Next</a></li>
+				<li><a href="#0" class="prev">Prev</a></li>
+			</ul> <!-- .cd-radial-slider-navigation -->
+		</div> <!-- .cd-radial-slider-wrapper --> 
+	</div>
+	<!-- //banner --> 
+</body>
+</html>
