@@ -1,7 +1,6 @@
 
 # 对联小组
-[燃尽图url](http://radekstepan.com/burnchart/#!/)
-![燃尽图](./burnchart/燃尽图11_26.png)
+![燃尽图](./burnchart/燃尽图11_27.png)
 ## 任务更改：
 姚青松、赵瑞静：tags 2 couplet  
 张一卓、刘泽：image 2 tags  
