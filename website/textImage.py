@@ -18,7 +18,7 @@ def textImage(strs, sourceimage, color, savepath="./"):
     y = 20
     
     #设置字体，如果没有，也可以不设置
-    font = ImageFont.truetype("C:\\Windows\\Fonts\\STXINGKA.TTF", fontSize)
+    font = ImageFont.truetype("./Fonts/STXINGKA.TTF", fontSize)
     
     right = 0       #往右位移量
     down = 0        #往下位移量

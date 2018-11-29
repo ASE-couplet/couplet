@@ -1,11 +1,9 @@
-﻿# 对联小组- website part
-this is used to save code and related things about the website
-responsible for Zaozao and Yufei
+# Python Flask app on Azure Web App for Containers
 
-2018.11.19 4:40pm
+This is a minimal sample app that demonstrates how to run a Python Flask application on Azure App Service on Linux.
 
-the ugly and simple version of website
+For more information, please see the [Python on App Service quickstart](https://docs.microsoft.com/en-us/azure/app-service/containers/quickstart-python).
 
-support upload a jpg and show it
+# Contributing
 
-using Flask and python
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
