@@ -177,7 +177,7 @@ def prepare_batch_predict_data(keyword, previous=[], prev=True, rev=False, align
     # previous sentences
     previous_sentences_ints = []
     for sentence in previous:
-        sentence_ints = process_sentence(sentence, rev=rev, pad_len=7 if align else None)
+        sentence_ints = process_sentence(sentence, rev=rev, pad_len=10 if align else None)
         previous_sentences_ints += [SEP_TOKEN] + sentence_ints
 
     # keywords
@@ -234,7 +234,7 @@ def gen_batch_train_data(batch_size, prev=True, rev=False, align=False, cangtou=
                     current_sentence, keywords = line.strip().split('\t')
 
                     current_sentence_ints = process_sentence(current_sentence, rev=rev, pad_len=10 if align else None)
-                    keywords_ints = process_sentence(keywords, rev=rev, pad_len=2 if align else None)
+                    keywords_ints = process_sentence(keywords, rev=rev, pad_len=4 if align else None)
                     source_ints = keywords_ints + (previous_sentences_ints if prev else [])
 
                     target.append(current_sentence_ints)

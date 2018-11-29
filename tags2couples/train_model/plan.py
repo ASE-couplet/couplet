@@ -70,10 +70,10 @@ class Planner:
             cmp = lambda x,y: cmp(self.ranks[x], self.ranks[y]))
         words = [keywords[idx] for idx in \
                 filter(lambda i: 0 == i or keywords[i] != keywords[i-1], range(len(keywords)))]
-        if len(words) < 4:
-            self.expand(words, 4)
+        if len(words) < 2:
+            self.expand(words, 2)
         else:
-            while len(words) > 4:
+            while len(words) > 2:
                 words.pop()
         return words
 
