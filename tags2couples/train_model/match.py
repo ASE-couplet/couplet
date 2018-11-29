@@ -15,6 +15,7 @@ class MatchUtil:
         final_tones = pypinyin.pinyin(ch, style=pypinyin.FINALS_TONE3, \
              heteronym=True, errors='default')[0] # select results for first and only char
         tones = [final_tone[-1] for final_tone in final_tones]
+        tones = [x.encode('raw_unicode_escape') for x in tones]
         filtered_tones = list(filter(str.isdigit, tones))
         tones_int = list(map(int, filtered_tones))
 

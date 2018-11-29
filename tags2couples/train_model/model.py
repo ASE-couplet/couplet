@@ -5,6 +5,8 @@
 import os
 from IPython import embed
 
+import random
+
 # framework
 import tensorflow as tf
 from tensorflow.contrib import seq2seq, rnn
@@ -361,7 +363,8 @@ class Seq2SeqModel:
                 decoding_helper = seq2seq.SampleEmbeddingHelper(
                     start_tokens=start_tokens,
                     end_token=end_token,
-                    embedding=lambda inputs: tf.nn.embedding_lookup(self.embedding, inputs)
+                    embedding=lambda inputs: tf.nn.embedding_lookup(self.embedding, inputs),
+                    seed = random.randint(0,1000)
                 )
             elif self.predict_mode == 'greedy':
                 print 'Building greedy decoder...'
@@ -500,13 +503,13 @@ class Seq2SeqModel:
 
         return outputs[1], outputs[2]   # loss, summary
 
-    def predict(self, sess, encoder_inputs, encoder_inputs_length):
+    def predict(self, sess, encoder_inputs, encoder_inputs_length, drop_out_rate=1.0):
         input_feed = self.check_feeds(encoder_inputs, encoder_inputs_length,
                                       decoder_inputs=None, decoder_inputs_length=None,
                                       predict=True)
 
         # Input feeds for dropout
-        input_feed[self.keep_prob_placeholder.name] = 1.0
+        input_feed[self.keep_prob_placeholder.name] = drop_out_rate
 
         output_feed = [self.decoder_pred_decode]
         outputs = sess.run(output_feed, input_feed)
