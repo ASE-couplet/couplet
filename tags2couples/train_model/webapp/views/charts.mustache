@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Neural Poetry</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="/custom.css" type="text/css" />
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="/chartAjax.js"></script>
+
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- Navigation Bar -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <a class="navbar-brand" href="/">
+          <img src="/assets/ink.png" width="40" height="30" class="d-inline-block align-top" alt="">
+          Neural Poetry
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/charts">Results</a>
+            </li>
+          </ul>
+          <a class="btn btn-outline-success my-2 my-sm-0" href="https://github.com/Disiok/poetry-seq2seq">Github</a>
+        </div>
+      </nav>
+
+      <div class="row align-items-center">
+        <div class="col">
+          <div class="card text-white">
+          <img class="card-img" src="/assets/robo.png">
+            <div class="card-img-overlay">
+              <h4 class="card-title">Results</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <h1 class="text-center"> Human </h1>
+          <canvas id="human-chart"></canvas>
+        </div>
+        <div class="col-lg-6">
+          <h1 class="text-center"> Computer </h1>
+          <canvas id="computer-chart"></canvas>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <h1 class="text-center"> Human </h1>
+          <canvas id="human-radar"></canvas>
+        </div>
+        <div class="col-lg-6">
+          <h1 class="text-center"> Computer </h1>
+          <canvas id="computer-radar"></canvas>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
