@@ -8,6 +8,7 @@ from werkzeug import secure_filename
 import logging
 import random
 import PIL
+import time
 from PIL import ImageFont
 from PIL import Image
 from PIL import ImageDraw
@@ -106,22 +107,30 @@ def result(filename, randseed):
 @socketio.on('image_url')
 def process_msg(msg):
     remote_ip = request.remote_addr
-    filename = os.path.join(app.config['UPLOAD_FOLDER'], remote_ip + msg['randseed'], msg['data'])
-    # os.system("python ./tag2img/predict.py")
-    os.system("python ./sleep.py")
-    f = open("./result.txt", "r")
-    strs = f.readlines()
-    f.close()
-    # strs = "往后余生,风雪是你,平淡是你,清贫也是你\n荣华是你,心底温柔是你,目光所致,也是你"
-    print(strs)
-    filename = textImage(strs, filename, (0, 0, 0), os.path.join(app.config['UPLOAD_FOLDER'], remote_ip + msg['randseed']))
-    emit('response', {'data': filename, 'randseed': msg['randseed']})
+    # filename = os.path.join(app.config['UPLOAD_FOLDER'], remote_ip + msg['randseed'], msg['data'])
+    os.system("python tag2img/predict.py &")
+    # os.system("start python sleep.py")
+    emit('wait', {'data': msg['data'], 'randseed': msg['randseed'], 'status':False})
     # return "<html> hello </html>"
     # os.system("python sleep.py")
     # # read result
     # 
     # 
     # return "url_for('/result/{}'.format(filename))"
+
+@socketio.on('inquiry')
+def inquiry_for_result(msg):
+    if os.path.isfile("/home/site/wwwroot/tag2img/sentence/result.txt"):
+        remote_ip = request.remote_addr
+        time.sleep(1)
+        f = open("/home/site/wwwroot/tag2img/sentence/result.txt", "r")
+        strs = f.readlines()
+        f.close()
+        filename = os.path.join(app.config['UPLOAD_FOLDER'], remote_ip + msg['randseed'], msg['data'])
+        filename = textImage(strs, filename, (0, 0, 0), os.path.join(app.config['UPLOAD_FOLDER'], remote_ip + msg['randseed']))
+        emit('response', {'data': filename, 'randseed': msg['randseed']})
+    else:
+        emit('wait', {'data': msg['data'], 'randseed': msg['randseed'], 'status':False})
 
 if __name__ == '__main__':
     socketio.run(app)

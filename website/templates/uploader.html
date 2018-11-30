@@ -32,11 +32,15 @@
 
         socket.on('connect', function() {
             socket.emit('image_url', {'data': "{{ filename }}", 'randseed': "{{ randseed }}" });
-        })
+        });
 
         socket.on('response', function(msg) {
             window.location.href = 'result/' + msg.data + '/' + msg.randseed;
         });
+
+		socket.on('wait', function(msg) {
+			socket.emit('inquiry', {'data': msg.data, 'randseed': msg.randseed});
+		});
 
         // $('form#emit').submit(function(event) {
         //         socket.emit('client_event', {data: $('#emit_data').val()});

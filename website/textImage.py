@@ -53,7 +53,7 @@ if __name__ == "__main__":
     #初始化字符串
     strs = "往后余生,风雪是你,平淡是你,清贫也是你\n荣华是你,心底温柔是你,目光所致,也是你"
     #模板图片
-    imageFile = ".\\test.jpg"
+    imageFile = "/home/site/wwwroot/uploader/172.19.0.18616/test.jpg"
     #新文件保存路径
-    file_save_dir = ".\\"
-    out = textImage(strs, imageFile, (0, 0, 0))
+    file_save_dir = "/home/site/wwwroot/uploader/172.19.0.18616/"
+    out = textImage(strs, imageFile, (0, 0, 0), file_save_dir)
