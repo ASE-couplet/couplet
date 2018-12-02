@@ -95,7 +95,7 @@ def upload_file():
             os.mkdir(os.path.join(app.config['UPLOAD_FOLDER'], remote_ip))
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], remote_ip, filename))
             return render_template("uploader.html", filename=filename, randseed=randseed)
-    return render_template("index_new.html")
+    return render_template("index.html")
 
 @app.route('/result/<filename>/<randseed>')
 def result(filename, randseed):
