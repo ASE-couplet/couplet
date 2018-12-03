@@ -47,11 +47,7 @@ def img2tag(image_url):
     # The 'analysis' object contains various fields that describe the image. The most
     # relevant caption for the image is obtained from the 'description' property.
     analysis = response.json()
-    
-    print(response.json())
-    print(type(response.json()))
-    print(response.json()['description']['tags'])
-    return response.json()['description']['tags']
+    return response.json()['description']['tags'][:4]
 
 def face2tag(face_url):
 

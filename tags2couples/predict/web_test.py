@@ -33,7 +33,7 @@ def main(args,cangtou=False):
                     result = Judge.eval_rhyme(lines)
                         # Print keywords and poem
                 print('Keyword:\t\tPoem:')
-                for line_number in xrange(2):
+                for line_number in range(2):
                     punctuation = u'，' if line_number % 2 == 0 else u'。'
                     print(u'{keyword}\t\t{line}{punctuation}'.format(
                             keyword=keywords[line_number],

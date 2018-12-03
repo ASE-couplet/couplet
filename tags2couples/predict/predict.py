@@ -9,6 +9,7 @@ import tensorflow as tf
 from data_utils import prepare_batch_predict_data
 from model import Seq2SeqModel
 from vocab import get_vocab, ints_to_sentence
+from plan import Planner
 
 # Data loading parameters
 tf.app.flags.DEFINE_boolean('rev_data', True, 'Use reversed training data')
@@ -133,14 +134,12 @@ class Seq2SeqPredictor:
         return sentences
 
 
-def main(_):
-    KEYWORDS = [
-        '红叶',
-        '收拾',
-        '思乡',
-        '相随'
-    ]
 
+def main(_):
+
+
+    planner = Planner()
+    keywords = planner.plan(input)
     with Seq2SeqPredictor() as predictor:
         lines = predictor.predict(KEYWORDS)
         for line in lines:
