@@ -1,7 +1,7 @@
+# -*- coding: utf-8 -*-
 import requests
 # If you are using a Jupyter notebook, uncomment the following line.
 #%matplotlib inline
-import matplotlib.pyplot as plt
 import json
 from PIL import Image
 from io import BytesIO
@@ -47,16 +47,7 @@ def img2tag(image_url):
     # The 'analysis' object contains various fields that describe the image. The most
     # relevant caption for the image is obtained from the 'description' property.
     analysis = response.json()
-    print(json.dumps(response.json()))
-    #image_caption = analysis["description"]["captions"][0]["text"].capitalize()
-
-    # Display the image and overlay it with the caption.
-    #image = Image.open(BytesIO(requests.get(image_url).content))
-    #plt.imshow(image)
-    #plt.axis("off")
-    #_ = plt.title(image_caption, size="x-large", y=-0.1)
-    #plt.show()
-    return analysis
+    return response.json()['description']['tags'][:4]
 
 def face2tag(face_url):
 

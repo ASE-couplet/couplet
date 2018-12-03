@@ -9,6 +9,7 @@ import tensorflow as tf
 from data_utils import prepare_batch_predict_data
 from model import Seq2SeqModel
 from vocab import get_vocab, ints_to_sentence
+from plan import Planner
 
 # Data loading parameters
 tf.app.flags.DEFINE_boolean('rev_data', True, 'Use reversed training data')
@@ -21,7 +22,7 @@ tf.app.flags.DEFINE_integer('beam_width', 1, 'Beam width used in beamsearch')
 tf.app.flags.DEFINE_integer('decode_batch_size', 80, 'Batch size used for decoding')
 tf.app.flags.DEFINE_integer('max_decode_step', 500, 'Maximum time step limit to decode')
 tf.app.flags.DEFINE_boolean('write_n_best', False, 'Write n-best list (n=beam_width)')
-tf.app.flags.DEFINE_string('model_path', None, 'Path to a specific model checkpoint.')
+tf.app.flags.DEFINE_string('model_path', 'model', 'Path to a specific model checkpoint.')
 tf.app.flags.DEFINE_string('model_dir', None, 'Path to load model checkpoints')
 tf.app.flags.DEFINE_string('predict_mode', 'greedy', 'Decode helper to use for predicting')
 tf.app.flags.DEFINE_string('decode_input', 'data/newstest2012.bpe.de', 'Decoding input path')
@@ -133,14 +134,12 @@ class Seq2SeqPredictor:
         return sentences
 
 
-def main(_):
-    KEYWORDS = [
-        '红叶',
-        '收拾',
-        '思乡',
-        '相随'
-    ]
 
+def main(_):
+
+
+    planner = Planner()
+    keywords = planner.plan(input)
     with Seq2SeqPredictor() as predictor:
         lines = predictor.predict(KEYWORDS)
         for line in lines:
