@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import requests
 # If you are using a Jupyter notebook, uncomment the following line.
 #%matplotlib inline
