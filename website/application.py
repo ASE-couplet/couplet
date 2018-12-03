@@ -103,6 +103,10 @@ def result(filename, randseed):
     sentence = "show_result"
     return render_template("result.html", file_url=file_url, sentence=sentence)
 
+@app.route('/reflect')
+def reflect():
+    return render_template("reflect.html")
+
 
 @socketio.on('image_url')
 def process_msg(msg):

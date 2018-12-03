@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -85,67 +85,39 @@
 
 </head>
 
-  <body>
-    <header class="masthead">
-      <div class="container h-100">
-        <div class="row h-100">
-          <div class="col-lg-9 my-auto">
-          </div>
-          <div class="col-lg-9 my-auto">
-            <div class="header-content mx-auto">
-              <a data-target="#myModal" class="btn btn-outline btn-xl js-scroll-trigger" data-toggle="modal">开始作诗</a>
+<body>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-4 column">
             </div>
-          </div>
+            <div class="col-md-4 column">
+                <div class="center-block">
+                        <div class="tabbable" id="tabs-340041">
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                         <a href="#panel-1" data-toggle="tab">反馈</a>
+                                    </li>
+                                    <li>
+                                         <a href="#2" data-toggle="tab">帮助</a>
+                                    </li>
+                                </ul>
+                        </div>
+                </div>
+                
+            </div>
+            <div class="col-md-4 column">
+            </div>
         </div>
+
+        <div class="row clearfix">
+                <form role="form" method=post class="center-block">
+                        <div class="form-group">
+                            <textarea class="form-control" rows="15"></textarea>
+                        </div>
+                </form>
         </div>
-      </div>
 
-            <!-- 模态框（Modal） -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-                <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-body">
-                    <form method=post enctype="multipart/form-data">
-                    <div class="file-loading">
-                      <input id="file-0a" class="file" type="file" name=file data-theme="fas">
-                      <input type="submit" value="upload">
-                    </div>
-                  </form></div>
-                </div><!-- /.modal-content -->
-              </div><!-- /.modal -->
-              
-            </div>
-           
-    </header>
-
-    <footer>
-        <div class="container">
-            <div class="row clearfix">
-              <div class="col-md-5 column">
-                  <a href="#关于我们"><p>关于我们</p></a>
-              </div>
-              <div class="col-md-5 column">
-                  <a href="#反馈"><p>反馈</p></a>
-              </div>
-            </div>
-          </div>
-    </footer>
-
-
-
-
-    
-    <!-- Bootstrap core JavaScript
-    <script src="/static/vendor/jquery/jquery.min.js"></script>
-    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
-
-    <!-- Plugin JavaScript -->
-    <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="/static/js/new-age.min.js"></script>
-
-  </body>
+    </div>
+</body>
 
 </html>
