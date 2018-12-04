@@ -37,7 +37,8 @@ def _min_word_cnt(cnts, poem, segmenter):
     for sentence in poem['sentences']:
         segs = segmenter.segment(sentence)
         for seg in segs:
-            min_cnt = min(min_cnt, cnts[seg])
+            if cnts.has_key(seg)==True:
+                min_cnt = min(min_cnt, cnts[seg])
     return min_cnt
 
 # TODO(vera): remove unnecessary logic
