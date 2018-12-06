@@ -13,7 +13,7 @@ from segment import Segmenter
 from quatrains import get_quatrains
 from rank_words import get_word_ranks
 from functools import reduce
-
+from translate import Translater
 
 _model_path = os.path.join(DATA_PROCESSED_DIR, 'kw_model.bin')
 
@@ -21,6 +21,7 @@ _model_path = os.path.join(DATA_PROCESSED_DIR, 'kw_model.bin')
 class Planner:
 
     def __init__(self):
+        self.translater = Translater()  
         self.ranks = get_word_ranks()
         if not os.path.exists(_model_path):
             self._train()
@@ -64,10 +65,14 @@ class Planner:
         shuffle(words)
 
     def plan(self, text):
-        def extract(sentence):
-            return [x for x in jieba.lcut(sentence) if x in self.ranks]
-        keywords = sorted(reduce(lambda x,y:x+y, list(map(extract, split_sentences(text))), []),
-            key = lambda x : self.ranks[x])
+        possible_result = split_sentences(text)
+        for i in range(len(possible_result)):
+            target = self.translater.translate(possible_result[i])
+            if target != "BAD TAG !":
+                possible_result[i] = target
+            else:
+                possible_result.pop(i)
+        keywords = sorted(possible_result, key = lambda x : self.ranks[x])
         words = [keywords[idx] for idx in \
                 [i for i in range(len(keywords)) if 0 == i or keywords[i] != keywords[i-1]]]
         if len(words) < 2:

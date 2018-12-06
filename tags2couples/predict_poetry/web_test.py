@@ -21,15 +21,8 @@ class Main_Poetry_maker:
         while(result == False):
             lines = self.predictor.predict(keywords)
             result = self.Judge.eval_rhyme(lines)
-
-        for line_number in range(4):
-            punctuation = u'，' if line_number % 4 == 0 else u'。'
-            print(u'{keyword}\t\t{line}{punctuation}'.format(
-                    keyword=keywords[line_number],
-                    line=lines[line_number],
-                    punctuation=punctuation
-            ))
-
+        return lines[0]+'('+keywords[0]+')' +'  '+lines[1]+'('+keywords[1]+')'+'  '+lines[2]+'('+keywords[2]+')'+'  '+lines[3]+'('+keywords[3]+')'
+        
 def parse_arguments(argv):
     parser = argparse.ArgumentParser()
     parser.add_argument('--Input', type=str, 
@@ -41,4 +34,4 @@ def parse_arguments(argv):
 if __name__ == '__main__':
     input_ustr = parse_arguments(sys.argv[1:]).Input
     maker = Main_Poetry_maker()
-    maker.predict(input_ustr)
+    print(maker.predict(input_ustr))
