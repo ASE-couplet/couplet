@@ -1,69 +1,91 @@
 <!DOCTYPE html>
-<!-- <html lang="en"> -->
+<html>
+
 <head>
-<title>图诗</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- Custom Theme files -->
-<link href="/static/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
-<link href="/static/css/style.css" type="text/css" rel="stylesheet" media="all">   
-<link href="/static/css/slider.css" type="text/css" rel="stylesheet" media="all"> 
-<link href='/static/css/simplelightbox.min.css' rel='stylesheet' type='text/css'> 
-<!-- //Custom Theme files -->
-<!-- font-awesome icons -->
-<link href="/static/css/font-awesome.css" rel="stylesheet"> 
-<!-- //font-awesome icons -->
-<!-- js -->
-<script src="/static/js/jquery-2.2.3.min.js"></script> 
-<!-- //js -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>PoemSpace</title>
+    <style>
+        @font-face{
+            font-family:"logo_zh", "logo_en", "text";
+            src:url('./Fonts/logo_zh.ttf') format('truetype'),
+                url('./Fonts/logo_en.TTF') format('truetype'),
+                url('./Fonts/text.TTF') format('truetype');
+        }
+        div{
+            text-align: center;
+            width: 100%;
+        }
+        .upload{
+            position: relative;width: 80px;height: 30px;line-height: 18px;background:white;text-align: justify;
+            color:black;padding: 0px 5px;-webkit-border-radius: 20px;border-radius: 10px;
+            margin:  auto;
+        }
+        .upload form{width:100%;position:absolute; left:0; top:0;opacity:0; filter:alpha(opacity=0);}
+        .upload form input{width: 100%;}
+        .content{font-family: 'logo_zh'}
+    </style>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/text.css">
+    <script src="/static/js/bootstrap.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 
-<link type="text/css" rel="stylesheet" href="/static/css/fileinput.css" />
-<link type="text/css" rel="stylesheet" href="/static/css/fileinput.min.css" />
-<script type="text/javascript" src="/static/js/fileinput.js"></script>
-<script type="text/javascript" src="/static/js/fileinput.min.js"></script>
-<script type="text/javascript" src="/static/js/fileinput_locale_zh.js"></script>
-<script type="text/javascript" src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="//cdn.bootcss.com/socket.io/1.5.1/socket.io.min.js"></script>  
-<script type="text/javascript" charset="utf-8">
-    $(document).ready(function() {
-        var socket = io.connect();
-
-        socket.on('connect', function() {
-            socket.emit('image_url', {"data": "{{ filename }}" });
-        })
-
-        socket.on('response', function(msg) {
-            $('#log').append('<br>' + $('<div/>').text('Received #' + ': ' + msg.data).html());
-            window.location.href = 'hello.html';
-        });
-
-        // $('form#emit').submit(function(event) {
-        //         socket.emit('client_event', {data: $('#emit_data').val()});
-        //         return false;
-        //     });
-    });
-</script>
-
-<!-- web-fonts --> 
-<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-<link href="http://fonts.googleapis.com/css?family=Tinos:400,400i,700,700i" rel="stylesheet"> 
-<!-- //web-fonts -->
-<!-- start-smooth-scrolling -->
-<script type="text/javascript" src="/static/js/move-top.js"></script>
-<script type="text/javascript" src="/static/js/easing.js"></script>	
-<script type="text/javascript">
-		jQuery(document).ready(function($) {
-			$(".scroll").click(function(event){		
-				event.preventDefault();
-		
-		$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-			});
-		});
-</script>
-<!-- //end-smooth-scrolling -->	
 </head>
-<body>
-    <div id='log'></div>
+
+<script type="text/javascript">
+    function set_duilian_visible(){
+        document.getElementById("jueju").style.display="none";
+        document.getElementById("duilian").style.display="";
+    }
+    function set_jueju_visible(){
+        document.getElementById("duilian").style.display="none";
+        document.getElementById("jueju").style.display="";
+    }
+</script>
+
+
+
+<body style="background-color:whitesmoke">
+    <div>
+        <font size="4" color="gray" face="logo_zh">诗景|</font>
+        <font size="4" color="grey" face="logo_en">PoemScape</font>    
+    </div>
+    <div>
+        <font type="button" onclick="set_jueju_visible()">绝句     |</font>
+        <font type="button" onclick="set_duilian_visible()">      对联</font>
+    </div>
+    <div id="jueju" style="display:none;">
+        <font size="3" color="gray" style="writing-mode:tb-rl;" height="200" width="200">
+            往后余生，<br/>
+            风雪是你，<br/>
+            平淡是你，<br/>
+            清贫也是你。<br/>
+        </font>
+        <br/>
+        <img src="/static/image/QRcode.png" height="200" width="200">
+        <br/>
+        <img src="/static/image/yusheng1.jpg" height="200" width="400">
+    </div>
+    <div id="duilian" style="display: ;">
+        <font size="3" color="gray" style="writing-mode:tb-rl ;" height="200" width="200">
+            荣华是你，<br/>
+            心底温柔是你，<br/>
+            目光所至，<br/>
+            也是你。<br/>
+        </font>
+        <img src="/static/image/QRcode.png" height="200" width="200">
+        <br/>
+        <img src="/static/image/yusheng2.jpg" height="200" width="400">   
+    </div>
+    <div class="upload">
+        <p>上传图片</p>
+        <form method="post" id="form1" enctype="multipart/form-data">
+            <input type="file" accept="image/*" name="file" onchange="javascript:fsubmit(document.form1);"/>
+        </form>
+    </div>
+    <div>
+        <br/>
+        <font size="3" color="gray">关于我们 | 反馈</font>
+    </div>
 </body>
+</html>

@@ -13,3 +13,5 @@ Jieba==0.38
 Gensim==2.0.0
 pypinyin==0.23
 IPython==7.1.1
+requests
+matplotlib

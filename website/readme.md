@@ -1,7 +1,9 @@
 # Python Flask app on Azure Web App for Containers
 
-## 修改
+This is a minimal sample app that demonstrates how to run a Python Flask application on Azure App Service on Linux.
 
-现在主页 /templates/index.html
-所使用的背景图片修改位置 /static/css/new-age.min.css background url 处， 修改图片相对链接即可
-位置修改： 表格的属性或者html的直接相对位置均可
+For more information, please see the [Python on App Service quickstart](https://docs.microsoft.com/en-us/azure/app-service/containers/quickstart-python).
+
+# Contributing
+
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.

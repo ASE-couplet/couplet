@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Poetscape</title>
+    <style>
+        @font-face{
+            font-family:"logo_zh";
+            src:url('/static/fonts/logo_zh.ttf') format('truetype')
+        }
+        @font-face{
+            font-family: "logo_en";
+            src:url('/static/fonts/logo_en.TTF') format('truetype')
+        }
+        @font-face{
+            font-family: "text";
+            src:url('/static/fonts/text.TTF') format('truetype')
+        }
+        div{
+            text-align: center;
+            width: 100%;
+        }
+        a{
+            text-decoration:none;
+        }
+        a:link {color:gray}
+        a:hover {color:darkslategray}
+        a:visited {color: blue}
+        a:active {color: gray}
+        .upload{
+            position: relative;width: 80px;height: 30px;line-height: 18px;background:white;text-align: justify;
+            color:black;padding: 0px 5px;-webkit-border-radius: 20px;border-radius: 10px;
+            margin:  auto;
+        }
+        .upload form{width:100%;position:absolute; left:0; top:0;opacity:0; filter:alpha(opacity=0);}
+        .upload form input{width: 100%;}
+        .content{font-family: 'logo_zh'}
+        .input{font-family: "logo_zh"}
+        .p{font-family: 'text'}
+        
+    </style>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/text.css">
+    <script src="/static/js/bootstrap.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <script type="text/javascript">
+        function fsubmit(obj){
+        document.getElementById("form1").submit();
+        }
+    </script>
+</head>
+
+<body style="background-color:whitesmoke">
+    <div>
+        <img src="/static/images/upper.png">
+        <br/>
+        <font size="8" color="gray" face='text'>詩景|<font size="8" color="gray" face='logo_en'>Poetscape</font>
+        <br/>
+        <font size="5" color="gray" face='text'>
+            请告诉我们你的建议：
+        </font>
+        <br/>     
+    </div>
+
+    <div>
+        <form method="POST">
+        <input type="text" style="width: 30%; height: 200px"/>
+        <br/>
+        <input type="submit" value="提交" style="font-size:20px"/>
+        </form>
+    </div>
+    <div>
+        <font size="3" face='text'>
+            <a href="/AboutUs">关于我们</a>
+            |
+            <a href="/index">返回</a>
+        </font>
+    </div>
+
+</body>
+</html>

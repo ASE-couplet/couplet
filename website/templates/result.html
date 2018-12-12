@@ -1,14 +1,159 @@
 <!DOCTYPE html>
-{% extends "bootstrap/base.html" %}
-{% block title %}图诗{% endblock %}
+<html>
 
-{% block content %}
-<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column" align=center>
-            <img src={{file_url}} />
-            <p>{{sentence}}</p>
-		</div>
-	</div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Poetscape</title>
+    <style>
+        @font-face{
+            font-family:"logo_zh", "logo_en", "text";
+            src:url('/static/fonts/logo_zh.ttf') format('truetype'),
+                url('/static/fonts/logo_en.TTF') format('truetype'),
+                url('/static/fonts/text.TTF') format('truetype');
+        }
+        div{
+            text-align: center;
+            width: 100%;
+        }
+        .upload{
+            position: relative;width: 80px;height: 30px;line-height: 18px;background:white;text-align: justify;
+            color:black;padding: 0px 5px;-webkit-border-radius: 20px;border-radius: 10px;
+            margin:  auto;
+        }
+        .upload form{width:100%;position:absolute; left:0; top:0;opacity:0; filter:alpha(opacity=0);}
+        .upload form input{width: 100%;}
+        .content{font-family: 'logo_zh'}
+    </style>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/text.css">
+    <script src="/static/js/bootstrap.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+
+<script type="text/javascript">
+
+    function submit_text(){
+        if(document.getElementById("duilian").style.display == "none")
+        {
+            document.getElementById("jueju_submit").submit();
+        }
+        else
+        {
+            document.getElementById("duilian_submit").submit();
+        }   
+    }
+    
+    function fsubmit(obj){
+        document.getElementById("form2").submit();
+        }
+    function upload_file(){
+        document.getElementById('dianwo').click();
+    }
+    function set_duilian_visible(){
+        document.getElementById("jueju").style.display="none";
+        document.getElementById("duilian").style.display="";
+        document.getElementById("jueju_button").style.background="white";
+        document.getElementById("duilian_button").style.background="#CCCCCC";
+        document.getElementById("jueju_button").setAttribute('src','/static/images/jueju_not_chosen.jpg')
+        document.getElementById("duilian_button").setAttribute('src','/static/images/duilian_chosen.jpg')
+    }
+    function set_jueju_visible(){
+        document.getElementById("duilian").style.display="none";
+        document.getElementById("jueju").style.display="";
+        document.getElementById("jueju_button").setAttribute('src','/static/images/jueju_chosen.jpg')
+        document.getElementById("duilian_button").setAttribute('src','/static/images/duilian_not_chosen.jpg')
+    }
+    function set_editable(){
+        if(document.getElementById("duilian").style.display == "none")
+        {
+            var region = "jueju_display";
+        }
+        else
+        {
+            var region = "duilian_display";
+        }
+    	var Url2=document.getElementById(region);
+        Url2.select();
+        document.execCommand("Copy");
+    }    
+</script>
+
+
+
+<body style="background-color:pink">
+    <div>
+        <font size="4" color="gray" face="logo_zh">诗景|</font>
+        <font size="4" color="grey" face="logo_en">Poetscape</font>    
+    </div>
+    <div align="center"style="text-align: center">
+    <table border="0" align="center" width="400" style="margin: auto;background-color:whitesmoke " >
+    <tr>
+    	<td width="400">
+    	<table>
+    	<td width="200">
+        <img id=jueju_button src="/static/images/jueju_chosen.jpg" width="200" onclick="set_jueju_visible()">
+        </td>
+        <td width="200">
+        <img id=duilian_button src="/static/images/duilian_not_chosen.jpg" width="200" onclick="set_duilian_visible()">
+ 		</td>
+ 		</table>
+ 	</td>
+ 	</tr>
+    <tr>
+    	<td width="400">
+    	<table>
+    	<td width="200">
+    <div id="jueju" style="display:;">
+        <form id="jueju_submit" method="POST" name="jueju_display" action="{{ url_for('jueju_submit', filename=filename, randseed=randseed) }}">
+        <textarea id="jueju_display" name="jueju_display" color="gray" style="font-size:15px; color:green;background: transparent;border: none" height="200" width="200" cols="20" rows="9">{{sentence}}</textarea>
+        </form>
+    </div>
+    <div id="duilian" style="display:none ;">
+        <form id="duilian_submit" method="POST" name="duilian_display" action="{{ url_for('duilian_submit', filename=filename, randseed=randseed) }}">
+        <textarea  id="duilian_display" name="duilian_display" color="gray" style="font-size:15px; color:green;background: transparent;border: none" height="200" width="200" cols="20" rows="9">{{sentence}}</textarea>
+        </form>
+    </div>
+</td>
+        <td width="200">
+        <img src="/static/image/QRcode.png" height="200" width="200">
+        </td>
+    </table>
+</td>
+    </tr>
+    <tr>
+    	<td width="400">
+        <img src="{{ file_url }}" width="400">   
+    </td>
+</tr>
+<tr>
+	<td width="400">
+		<table>
+	<td width="133">
+        <form method="post" id="form1" enctype="multipart/form-data">
+        <img src="/static/images/zaixieyishou.jpg" width="133" onclick="upload_file()">
+        </form>
+        </td>
+        <td width="134">
+        <img src="/static/images/shengchengtupian.jpg" width="134" onclick="submit_text()">
+        </td>
+        <td width="133">
+        <img src="/static/images/fuzhiwenzi.jpg" width="133" onclick="set_editable()">
+        </td>
+    </table>
+</td>
+ </tr>
+</table>
 </div>
-{% endblock %}
+    <div>
+        <br/>
+        <font size="3" color="gray"><a href="/AboutUs" >关于我们</a> | <a href="/FeedBack">反馈</a></font>
+        <div class="uplpad" style="display:none ;">
+        <form method="post" id="form2" enctype="multipart/form-data">
+            <input id='dianwo' type="file" accept="image/*" name="file" onchange="javascript:fsubmit(document.form2);"/>
+        </form>
+        </div>
+    </div>
+
+</body>
+</html>
